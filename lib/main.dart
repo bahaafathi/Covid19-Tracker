@@ -113,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Color(0x000000`),
+      backgroundColor: Color(0x000000),
       appBar: AppBar(
         title: Text(country, textAlign: TextAlign.center),
         leading: Theme(
