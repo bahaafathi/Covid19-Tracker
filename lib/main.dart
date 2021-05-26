@@ -93,8 +93,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           if (response.statusCode != 200) return;
         }
 
-        var data = Parser.getChartsData(response.body, settings.defaultDailyView);
-        setState(() { chartsData[localCountry] = data;  });
+        var data =
+            Parser.getChartsData(response.body, settings.defaultDailyView);
+        setState(() {
+          chartsData[localCountry] = data;
+        });
         checkRangeSetting();
       }
     }
@@ -110,7 +113,7 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      backgroundColor: Color(0xff232d37),
+      backgroundColor: Color(0x000000`),
       appBar: AppBar(
         title: Text(country, textAlign: TextAlign.center),
         leading: Theme(
@@ -154,10 +157,16 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 children: <Widget>[
                   Text(
                     'Total Tests:',
-                    style: TextStyle(color: Colors.blue[200], fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        color: Colors.blue[200],
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
                   ),
                   Counter(
-                    textStyle: TextStyle(color: Colors.blue[200], fontSize: 22, fontWeight: FontWeight.bold),
+                    textStyle: TextStyle(
+                        color: Colors.blue[200],
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold),
                     animation: new StepTween(
                       begin: 0, //prevTotalCases,
                       end: countryData[country].totalTests,
@@ -188,12 +197,19 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               children: <Widget>[
                 Text(
                   'Total Cases:',
-                  style: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                 ),
                 Counter(
-                  textStyle: TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.bold),
+                  textStyle: TextStyle(
+                      color: Colors.white,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                   animation: new StepTween(
-                    begin: min(countryData[country].totalCases, 0), //prevTotalCases,
+                    begin: min(
+                        countryData[country].totalCases, 0), //prevTotalCases,
                     end: countryData[country].totalCases,
                   ).animate(_controller),
                 ),
@@ -209,7 +225,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Counter(
                   textStyle: TextStyle(color: Colors.white, fontSize: 18),
                   animation: new StepTween(
-                    begin: min(countryData[country].casesPerMln.toInt(), 0), //prevTotalCases,
+                    begin: min(countryData[country].casesPerMln.toInt(),
+                        0), //prevTotalCases,
                     end: countryData[country].casesPerMln.toInt(),
                   ).animate(_controller),
                 ),
@@ -225,25 +242,35 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Counter(
                   textStyle: TextStyle(color: Colors.white, fontSize: 18),
                   animation: new StepTween(
-                    begin: min(countryData[country].newCases, 0), //prevTotalCases,
+                    begin:
+                        min(countryData[country].newCases, 0), //prevTotalCases,
                     end: countryData[country].newCases,
                   ).animate(_controller),
                 ),
               ],
             ),
-            chartsData[country] != null ? createGraph(chartsData[country].total) : SizedBox(),
+            chartsData[country] != null
+                ? createGraph(chartsData[country].total)
+                : SizedBox(),
             SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   'Active Cases:',
-                  style: TextStyle(color: Colors.green, fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.green,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                 ),
                 Counter(
-                  textStyle: TextStyle(color: Colors.green, fontSize: 22, fontWeight: FontWeight.bold),
+                  textStyle: TextStyle(
+                      color: Colors.green,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                   animation: new StepTween(
-                    begin: min(countryData[country].activeCases, 0), //prevRecoveredCases,
+                    begin: min(countryData[country].activeCases,
+                        0), //prevRecoveredCases,
                     end: countryData[country].activeCases,
                   ).animate(_controller),
                 )
@@ -259,25 +286,35 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Counter(
                   textStyle: TextStyle(color: Colors.green, fontSize: 18),
                   animation: new StepTween(
-                    begin: min(countryData[country].totalRecovered, 0), //prevTotalCases,
+                    begin: min(countryData[country].totalRecovered,
+                        0), //prevTotalCases,
                     end: countryData[country].totalRecovered,
                   ).animate(_controller),
                 ),
               ],
             ),
-            chartsData[country] != null ? createGraph(chartsData[country].recovered) : SizedBox(),
+            chartsData[country] != null
+                ? createGraph(chartsData[country].recovered)
+                : SizedBox(),
             SizedBox(height: 30),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   'Total Deaths:',
-                  style: TextStyle(color: Colors.red, fontSize: 22, fontWeight: FontWeight.bold),
+                  style: TextStyle(
+                      color: Colors.red,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                 ),
                 Counter(
-                  textStyle: TextStyle(color: Colors.red, fontSize: 22, fontWeight: FontWeight.bold),
+                  textStyle: TextStyle(
+                      color: Colors.red,
+                      fontSize: 22,
+                      fontWeight: FontWeight.bold),
                   animation: new StepTween(
-                    begin: min(countryData[country].totalDeaths, 0), //prevDeathCases,
+                    begin: min(
+                        countryData[country].totalDeaths, 0), //prevDeathCases,
                     end: countryData[country].totalDeaths,
                   ).animate(_controller),
                 )
@@ -293,7 +330,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Counter(
                   textStyle: TextStyle(color: Colors.red, fontSize: 18),
                   animation: new StepTween(
-                    begin: min(countryData[country].deathsPerMln.toInt(), 0), //prevTotalCases,
+                    begin: min(countryData[country].deathsPerMln.toInt(),
+                        0), //prevTotalCases,
                     end: countryData[country].deathsPerMln.toInt(),
                   ).animate(_controller),
                 ),
@@ -309,7 +347,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Counter(
                   textStyle: TextStyle(color: Colors.red, fontSize: 18),
                   animation: new StepTween(
-                    begin: min(countryData[country].criticalCases, 0), //prevTotalCases,
+                    begin: min(countryData[country].criticalCases,
+                        0), //prevTotalCases,
                     end: countryData[country].criticalCases,
                   ).animate(_controller),
                 ),
@@ -325,28 +364,36 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
                 Counter(
                   textStyle: TextStyle(color: Colors.red, fontSize: 18),
                   animation: new StepTween(
-                    begin: min(countryData[country].newDeaths, 0), //prevTotalCases,
+                    begin: min(
+                        countryData[country].newDeaths, 0), //prevTotalCases,
                     end: countryData[country].newDeaths,
                   ).animate(_controller),
                 ),
               ],
             ),
-            chartsData[country] != null ? createGraph(chartsData[country].deaths) : SizedBox(),
+            chartsData[country] != null
+                ? createGraph(chartsData[country].deaths)
+                : SizedBox(),
             SizedBox(height: 50),
             chartsData[country] == null && countryData[country].link != null
                 ? FlatButton(
                     child: Container(
                         padding: EdgeInsets.all(10),
-                        decoration: BoxDecoration(color: Colors.grey, borderRadius: BorderRadius.circular(4)),
+                        decoration: BoxDecoration(
+                            color: Colors.grey,
+                            borderRadius: BorderRadius.circular(4)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[
-                            Text("Load Charts", style: TextStyle(color: Color(0xff232d37), fontSize: 18)),
+                            Text("Load Charts",
+                                style: TextStyle(
+                                    color: Color(0xff232d37), fontSize: 18)),
                           ],
                         )),
                     onPressed: () {
                       setState(() {
-                        chartsData[country] = new ChartsData(daily: settings.defaultDailyView);
+                        chartsData[country] =
+                            new ChartsData(daily: settings.defaultDailyView);
                       });
                       _triggerLiquidPullRefresh();
                     },
@@ -387,7 +434,8 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
         if (!settings.alwaysLoadCharts)
           _controller.forward(from: 0.0);
         else if (chartsData[country] == null) {
-          chartsData[country] = new ChartsData(daily: settings.defaultDailyView);
+          chartsData[country] =
+              new ChartsData(daily: settings.defaultDailyView);
           _triggerLiquidPullRefresh();
         }
       });
@@ -398,15 +446,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
     if (chartsData[country] != null && chartsData[country].total.available) {
       DateTimeRange range = getChartRange(chartsData[country]);
       selectedDateRange = await showDialog(
-        context: context,
-        builder: (BuildContext context) {
-          return new DateRangeDialog(range, selectedDateRange ?? range);
-        }) ?? selectedDateRange;
+              context: context,
+              builder: (BuildContext context) {
+                return new DateRangeDialog(range, selectedDateRange ?? range);
+              }) ??
+          selectedDateRange;
       setState(() {});
     } else {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Row(
-          children: [Icon(Icons.info_outline), SizedBox(width: 15), Text("Charts data is not yet available!")],
+          children: [
+            Icon(Icons.info_outline),
+            SizedBox(width: 15),
+            Text("Charts data is not yet available!")
+          ],
         ),
         elevation: 6.0,
         behavior: SnackBarBehavior.floating,
@@ -421,16 +474,20 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
               context: context,
               builder: (BuildContext context) {
                 return new SettingsDialog(settings);
-              }) ?? settings;
+              }) ??
+          settings;
 
       setState(() {
-        if(prevRange != settings.rangeSetting)
-          checkRangeSetting();
+        if (prevRange != settings.rangeSetting) checkRangeSetting();
       });
     } else {
       _scaffoldKey.currentState.showSnackBar(SnackBar(
         content: Row(
-          children: [Icon(Icons.info_outline), SizedBox(width: 15), Text("Settings are still loading!")],
+          children: [
+            Icon(Icons.info_outline),
+            SizedBox(width: 15),
+            Text("Settings are still loading!")
+          ],
         ),
         elevation: 6.0,
         behavior: SnackBarBehavior.floating,
@@ -441,28 +498,26 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   void checkRangeSetting() {
     if (chartsData[country] != null && chartsData[country].total.available) {
       DateTimeRange range = getChartRange(chartsData[country]);
-      if(selectedDateRange != null) {
+      if (selectedDateRange != null) {
         if (selectedDateRange.end.compareTo(range.end) > 0)
-          selectedDateRange = new DateTimeRange(start: selectedDateRange.start, end: range.end);
+          selectedDateRange =
+              new DateTimeRange(start: selectedDateRange.start, end: range.end);
 
         if (selectedDateRange.start.compareTo(range.start) < 0)
-          selectedDateRange = new DateTimeRange(start: range.start, end: selectedDateRange.end);
+          selectedDateRange =
+              new DateTimeRange(start: range.start, end: selectedDateRange.end);
       }
 
-      if(justStarted) {
+      if (justStarted) {
         justStarted = false;
         switch (settings.rangeSetting) {
           case 0:
             selectedDateRange = DateTimeRange(
-                start: range.end.subtract(Duration(days: 7)),
-                end: range.end
-            );
+                start: range.end.subtract(Duration(days: 7)), end: range.end);
             break;
           case 1:
             selectedDateRange = DateTimeRange(
-                start: range.end.subtract(Duration(days: 28)),
-                end: range.end
-            );
+                start: range.end.subtract(Duration(days: 28)), end: range.end);
             break;
           case 2:
             selectedDateRange = null;
@@ -473,9 +528,13 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
   }
 
   Widget createGraph(ChartData chartData) {
-    if (selectedDateRange != null && selectedDateRange.start.compareTo(selectedDateRange.end) >= 0)
-      chartData = new ChartData.empty(chartData.gradientColors, daily: settings.defaultDailyView);
-    var lineChartData = chartData.daily ? dailyData(chartData, selectedDateRange) : totalData(chartData, selectedDateRange);
+    if (selectedDateRange != null &&
+        selectedDateRange.start.compareTo(selectedDateRange.end) >= 0)
+      chartData = new ChartData.empty(chartData.gradientColors,
+          daily: settings.defaultDailyView);
+    var lineChartData = chartData.daily
+        ? dailyData(chartData, selectedDateRange)
+        : totalData(chartData, selectedDateRange);
 
     return Stack(
       children: <Widget>[
@@ -483,9 +542,11 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
           aspectRatio: 1.70,
           child: Container(
             child: Padding(
-                padding: const EdgeInsets.only(right: 18.0, left: 12.0, top: 24, bottom: 12),
+                padding: const EdgeInsets.only(
+                    right: 18.0, left: 12.0, top: 24, bottom: 12),
                 child: new LineChart(lineChartData,
-                    swapAnimationDuration: Duration(seconds: chartData.available ? 1 : 0))),
+                    swapAnimationDuration:
+                        Duration(seconds: chartData.available ? 1 : 0))),
           ),
         ),
         Positioned.fill(
